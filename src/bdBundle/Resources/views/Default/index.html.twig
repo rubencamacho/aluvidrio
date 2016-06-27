@@ -1,0 +1,52 @@
+{% extends '::frontend.html.twig' %}
+
+
+{% block content %}
+
+	<div id="contenido-principal">
+
+		{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{asset('/obra/costeofertado')}}">
+			<div id="" class="col-xs-12 col-sm-4 col-md-4 reg lila">
+				<h3 >Ofertas</h3>
+			</div>
+		</a>
+
+
+		<a href="{{asset('/obra/costereal')}}">
+			<div id="" class="col-xs-12 col-sm-4 col-md-4 reg naranja">
+				<h3>Control de Costes</h3>				
+			</div>
+		</a>
+		{% endif %}
+
+		<a href="{{asset('/partes')}}">
+			<div id="" class="col-xs-12 col-sm-4 col-md-4 reg azul">
+				<h3>Partes de Trabajo</h3>			
+			</div>
+		</a>
+
+		{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{asset('/costereal')}}">
+			<div id="" class="col-xs-12 col-sm-4 col-md-4 reg rojo">
+				<h3>Coste real de Ejecución</h3>			
+			</div>
+		</a>
+
+		<a href="{{asset('/informes')}}">
+			<div id="" class="col-xs-12 col-sm-4 col-md-4 reg verde">
+				<h3>Informes y Gráficas</h3>
+			</div>
+		</a>
+
+		<a href="{{asset('obras/sin-presupuesto')}}">
+			<div id="" class="col-xs-12 col-sm-4 col-md-4 reg amarillo">
+			<h3>Obras sin Presupuesto</h3>
+		</div>		
+		</a>
+		{% endif %}
+
+	</div>
+
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Proveedores por productos</h1>
+
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+		    <li> <a href="{{asset('proveedor/productos')}}">Productos</a></li>
+		    <li class="active">Ver Partes</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+
+	<table class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Proveedor</th>
+					<th>Precio</th>
+					<th></th>
+				</tr>
+			</thead>
+				{% for dato in datos %}
+				<tr>
+					<td>{{dato.proveedor}}</td>
+					<td>{{dato.precio}}</td>
+					<td>{{dato.producto.descripcion}}</td>
+				</tr>
+				{% endfor %}
+
+		</table>
+	</table>
+
+{% endblock %}

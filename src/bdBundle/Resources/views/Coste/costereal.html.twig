@@ -1,0 +1,86 @@
+{% extends '::frontend.html.twig' %}
+
+
+
+{% block content %}
+
+	<h1>Coste Real de Ejecución</h1>
+
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+		    <li class="active">Coste Real</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+
+	<table class="table-responsive">
+		<table id="table" class="table table-bordered">
+		{% set total=0 %}
+		{% for p in productos %}
+			{% if obra == p.obra %}
+				{% set importe = p.und * p.precio %}
+				{% set total = total + importe %}
+			{% endif %}
+		{% endfor %}
+			<thead>
+				<tr>
+					<th>Prefijo</th>
+					<th>Cod.Prod</th>
+					<th>Descripción</th>
+					<th>Und.</th>
+					<th>Precio Ofertado</th>
+					<th>Coste Real</th>
+					<th>Desviación</th>
+					<th>%Desv</th>
+					<th>Importe</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th>{{total}}€</th>
+				</tr>
+			</tfoot>
+				{% for dato in datos %}
+				<tr>
+					<td>{{dato.prefijo.prefijo}}</td>
+					<td>{{dato.codprod.codprod}}</td>
+					<td>{{dato.descripcion}}</td>
+					<td>{{dato.und}}</td>
+
+					<td>{{dato.oferta}}€</td>
+					<td>{{dato.precio}}€</td>
+					{% if dato.oferta < dato.precio %}		
+						<td class="red">{{dato.oferta - dato.precio}}€</td>
+					{% else %}
+						<td>{{dato.oferta - dato.precio}}€</td>
+					{% endif %}
+						{% if dato.precio == 0 or dato.oferta == 0 %}
+							<td>0</td>
+						{% elseif (((dato.oferta*100)/dato.precio)-100 < 0) %}
+							<td class="red">{{((dato.oferta*100)/dato.precio)-100}}</td>
+						{% else %}
+							<td>{{((dato.oferta*100)/dato.precio)-100}}</td>
+
+						{% endif %}
+					{% set importe = dato.und * dato.precio %}
+					<td>{{ importe }}€</td>
+				</tr>
+				{% endfor %}
+
+		</table>
+	</table>
+
+{% endblock %}
+

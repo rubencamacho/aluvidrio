@@ -1,0 +1,50 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Listado de Productos</h1>
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+	        <li class="active">Productos</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+	 <!--<a href="{{asset('productos/add')}}" title="Agregar" class="btn btn-success">Agregar</a> <br><br>-->
+
+	<table class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Cod.Prod.</th>
+					<th>Descripción</th>
+					<th>Precio</th>
+					<th></th>
+				</tr>
+			</thead>
+				{% for product in productos %}
+				<tr>
+					<td>{{product.id}}</td>
+					<td>{{product.descripcion}}</td>
+					<td>{{product.precio}}</td>
+					<td>
+						{% if product.obra|length == 0 %}
+						<a href="{{asset('producto/delete')}}/{{product.id}}" title="Eliminar" class="btn btn-danger" onclick="return confirm('¿Está seguro que desea borrar la obra?')">Eliminar</a>
+						
+						{% else %}
+							<span>Producto en uso</span>
+						{% endif %}
+
+						-
+						<a href="{{asset('producto/edit')}}/{{product.id}}" title="Editar" class="btn btn-warning">Editar</a>
+					</td>
+				</tr>
+				{% endfor %}
+
+		</table>
+	</table>
+
+{% endblock %}

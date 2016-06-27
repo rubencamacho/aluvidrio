@@ -1,0 +1,20 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+    app.datatable.obra:
+        class: bdBundle\Datatables\ObraDatatable
+        parent: sg_datatables.datatable.abstract
+
+    app.datatable.producto:
+        class: bdBundle\Datatables\ProductoDatatable
+        parent: sg_datatables.datatable.abstract
+
+    app.datatable.user:
+        class: bdBundle\Datatables\UserDatatable
+        parent: sg_datatables.datatable.abstract
+    app.datatable.costeoferta:
+        class: bdBundle\Datatables\CosteofertaDatatable
+        parent: sg_datatables.datatable.abstract

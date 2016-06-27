@@ -1,0 +1,44 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Operarios</h1>
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+		    <li class="active">Operarios</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+
+	<table class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Cod.Operario</th>
+					<th>Nombre</th>
+					<th></th>
+				</tr>
+			</thead>
+				{% for operario in operarios %}
+					<tr>
+						<td>{{operario.id}}</td>
+						<td>{{operario.nombre}}</td>
+						<td>	
+							<a href="{{asset('informe/operario/horas')}}/{{operario.nombre}}" title="Horas" class="btn btn-primary">Horas Obra</a>	
+
+							<a href="{{asset('informe/taller/horas')}}/{{operario.nombre}}" title="Horas" class="btn btn-success">Horas Taller</a>
+
+							<a href="{{asset('informe/mantenimiento/horas')}}/{{operario.nombre}}" title="Horas" class="btn btn-warning">Horas Mantenimiento</a>
+								
+						</td>
+					</tr>
+				{% endfor %}
+
+		</table>
+	</table>
+
+{% endblock %}

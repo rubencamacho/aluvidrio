@@ -1,0 +1,47 @@
+bdBundle\Entity\Costereal:
+    type: entity
+    table: costereal
+    indexes:
+        fk_costereal_obra:
+            columns:
+                - obra_id
+        fk_costereal_producto:
+            columns:
+                - producto_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        coste:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+    manyToOne:
+        producto:
+            targetEntity: Producto
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                producto_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        obra:
+            targetEntity: Obra
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                obra_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

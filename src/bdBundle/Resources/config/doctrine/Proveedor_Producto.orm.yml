@@ -1,0 +1,38 @@
+bdBundle\Entity\Proveedor_Producto:
+    type: entity
+    table: proveedor_producto
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        proveedor:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        precio:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0           
+    manyToOne:
+        producto:
+            targetEntity: Producto
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                producto_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+
+    lifecycleCallbacks: {  }

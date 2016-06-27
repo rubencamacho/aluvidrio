@@ -1,0 +1,43 @@
+bdBundle\Entity\Obra:
+    type: entity
+    table: obras
+    repositoryClass: bdBundle\Repository\ObraRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        obra:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        cliente:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        fecha:
+            type: date
+            nullable: true
+        estado:
+            type: string
+            nullable: true
+            length: 32
+            options:
+                fixed: false
+        presupuesto:
+            type: boolean
+            nullable: false
+        oferta:
+            type: boolean
+            nullable: true
+
+    lifecycleCallbacks: {  }

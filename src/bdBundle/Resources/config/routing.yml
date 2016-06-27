@@ -1,0 +1,306 @@
+# LOGIN #
+login:
+    path: /login
+    defaults: { _controller: bdBundle:User:login }   
+login_check:
+    path: /login_check   
+logout:
+    path: /logout
+# REGISTER #
+register:
+  path:       /register
+  defaults:   { _controller: bdBundle:User:register}
+# HOMEPAGE #
+bd_homepage:
+    path:     /aluvidrio
+    defaults: { _controller: bdBundle:Default:index }
+# PREFIJOS #
+prefijos_index:
+  path:       /prefijos
+  defaults:   { _controller: bdBundle:Prefijo:index }
+prefijo_new:
+  path:       /prefijo/add
+  defaults:   { _controller: bdBundle:Prefijo:add }
+prefijo_edit:
+  path:       /prefijo/edit/{id}
+  defaults:   { _controller: bdBundle:Prefijo:edit }
+prefijo_delete:
+  path:     /prefijo/delete/{id}
+  defaults: {_controller: bdBundle:Prefijo:delete }
+
+# PRODUCTOS
+producto_index:   
+  path:       /productos
+  defaults:   { _controller: bdBundle:Producto:index }
+producto_new:   
+  path:       /producto/add
+  defaults:   { _controller: bdBundle:Producto:add }
+producto_edit:   
+  path:       /producto/edit/{id}
+  defaults:   { _controller: bdBundle:Producto:edit }
+producto_delete:   
+  path:       /producto/delete/{id}
+  defaults:   { _controller: bdBundle:Producto:delete }
+
+# OBRA COSTES  #
+obra_costereal:    
+  path:       /obra/costereal
+  defaults:   { _controller: bdBundle:Obra:costereal }
+obra_costeofertado:    
+  path:       /obra/costeofertado
+  defaults:   { _controller: bdBundle:CosteOferta:index }
+coste_real_rejecucion:
+  path:       /costereal
+  defaults:   {_controller: bdBundle:Coste:costerealejecucion}
+costereal:   
+  path:       /costereal/{id}
+  defaults:   { _controller: bdBundle:Coste:costereal }
+obra_coste:
+  path:       /obra/coste/{id}
+  defaults:   { _controller: bdBundle:Coste:costeobra }
+coste_add:
+  path:       /obra/coste/add/{id}
+  defaults:   { _controller: bdBundle:Coste:addcoste }
+coste_edit:
+  path:       /obra/coste/edit/{id}
+  defaults:   { _controller: bdBundle:Coste:edit }
+edit_coste:
+  path:       /costereal/edit/{id}
+  defaults:   { _controller:bdBundle:Coste:post}
+coste_delete:   
+  path:       /obra/coste/delete/{id}
+  defaults:   { _controller: bdBundle:Coste:delete }
+edit_und:
+  path:       /costereal/edit/und/{id}
+  defaults:   { _controller: bdBundle:Coste:postund }
+edit_albaran:
+  path:       /costereal/edit/albaran/{id}
+  defaults:   { _controller: bdBundle:Coste:postalbaran }
+edit_precio:
+  path:       /costereal/edit/precio/{id}
+  defaults:   { _controller: bdBundle:Coste:postprecio }
+edit_codprod:
+  path:       /costereal/edit/codprod/{id}
+  defaults:   { _controller: bdBundle:Coste:postcodprod }
+edit_proveedor:
+  path:       /costereal/edit/proveedor/{id}
+  defaults:   { _controller: bdBundle:Coste:postproveedor }
+
+# COSTE OFERTA #
+costeoferta_index:   
+  path:       /oferta/coste/{id}
+  defaults:   { _controller: bdBundle:CosteOferta:costeoferta }
+edit_oferta:
+  path:       /costeoferta/edit/{id}
+  defaults:   { _controller:bdBundle:CosteOferta:post}
+edit_oferta_und:
+  path:       /costeoferta/edit/und/{id}
+  defaults:   { _controller:bdBundle:CosteOferta:postund}
+edit_oferta_precio:
+  path:       /costeoferta/edit/precio/{id}
+  defaults:   { _controller:bdBundle:CosteOferta:postprecio }
+edit_oferta_codigo:
+  path:       /costeoferta/edit/codigo/{id}
+  defaults:   { _controller:bdBundle:CosteOferta:postcodigo }
+oferta_edit:
+  path:       /obra/oferta/edit/{id}
+  defaults:   { _controller: bdBundle:Costeoferta:edit }  
+oferta_delete:   
+  path:       /obra/oferta/delete/{id}
+  defaults:   { _controller: bdBundle:Costeoferta:delete }
+
+
+costeoferta:
+  path:       /coste_oferta/{id}
+  defaults:   {_controller: bdBundle:CosteOferta:coste_oferta}
+
+# OFERTAS #
+oferta_index:
+  path:       /ofertas 
+  defaults:   { _controller: bdBundle:CosteOferta:ofertas}
+
+# CLIENTES #
+clientes_index:   
+  path:       /clientes
+  defaults:   { _controller: bdBundle:Cliente:index }
+
+# USUARIOS #
+user_index:   
+  path:       /users
+  defaults:   { _controller: bdBundle:User:index }
+user_new:   
+  path:       /user/add
+  defaults:   { _controller: bdBundle:User:register }
+user_edit:
+  path:       /user/edit/{id}
+  defaults:   { _controller: bdBundle:User:edit }
+user_delete:
+  path:       /user/delete/{id}
+  defaults:   { _controller: bdBundle:User:delete }
+
+# PROVEEDORES #
+proveedores_list:
+  path:       /proveedores 
+  defaults:   {_controller: bdBundle:Proveedor:index }
+proveedor_add:
+  path:       /proveedor/add
+  defaults:   {_controller: bdBundle:Proveedor:add }
+proveedor_edit:
+  path:       /proveedor/edit/{id}
+  defaults:   {_controller: bdBundle:Proveedor:edit}
+proveedor_delete:
+  path:       /proveedor/delete/{id}
+  defaults:   { _controller: bdBundle:Proveedor:delete }
+
+# PROVEEDOR PRODUCTO #
+proveedor_producto:
+  path:       /proveedor/productos
+  defaults:   {_controller: bdBundle:Proveedor:productos }
+proveedor_producto_add:
+  path:       /proveedor/producto/add
+  defaults:   {_controller: bdBundle:Proveedor:addproveedorproducto }
+proveedor_ver:
+  path:       /proveedor/producto/{id}
+  defaults:   {_controller: bdBundle:Proveedor:verproveedores}
+
+
+# OPERARIOS #
+operarios_list:
+  path:       /operarios
+  defaults:   {_controller: bdBundle:Operario:index }
+operario_add:
+  path:       /operario/add
+  defaults:   {_controller: bdBundle:Operario:add }
+operario_edit:
+  path:       /operario/edit/{id}
+  defaults:   {_controller: bdBundle:Operario:edit }
+operario_delete:
+  path:       /operario/delete/{id}
+  defaults:   { _controller: bdBundle:Operario:delete }
+edit_operario:
+  path:       /post/{id}
+  defaults:   {_controller: bdBundle:Operario:post }
+
+
+# PARTES #
+partes:
+  path:       /partes
+  defaults:   {_controller: bdBundle:Parte:partes}
+# PARTES OBRAS #
+partes_list:
+  path:       /partes/obras
+  defaults:   {_controller: bdBundle:Parte:indexobra }
+partes_obra:
+  path:       /parte/obra/list/{id}
+  defaults:   {_controller: bdBundle:Parte:partesobra }
+parte_add:
+  path:       /parte/obra/add/{id}
+  defaults:   {_controller: bdBundle:Parte:addobra }
+parte_edit:
+  path:       /parte/obra/edit/{id}
+  defaults:   {_controller: bdBundle:Parte:editobra }
+parte_delete:
+  path:       /parte/obra/delete/{id}
+  defaults:   {_controller: bdBundle:Parte:deleteobra }
+
+# PARTES TALLER #
+partes_taller_list:
+  path:       /partes/taller 
+  defaults:   {_controller: bdBundle:Taller:indextaller }
+parte_taller_add:
+  path:       /parte/taller/add
+  defaults:   {_controller: bdBundle:Taller:addtaller }
+parte_taller_edit:
+  path:     /parte/taller/edit/{id}
+  defaults: {_controller: bdBundle:Taller:edittaller }
+parte_taller_delete:
+  path:     /parte/taller/delete/{id}
+  defaults: {_controller: bdBundle:Taller:deletetaller }
+
+# PARTES MANTENIMIENTO #
+partes_mantenimiento_list:
+  path:     /partes/mantenimiento 
+  defaults: {_controller: bdBundle:Mantenimiento:indexmantenimiento }
+parte_mantenimiento_add:
+  path:     /parte/mantenimiento/add
+  defaults: {_controller: bdBundle:Mantenimiento:addmantenimiento }
+parte_mantenimiento_edit:
+  path:     /parte/mantenimiento/edit/{id}
+  defaults: {_controller: bdBundle:Mantenimiento:editmantenimiento }
+parte_mantenimiento_delete:
+  path:     /parte/mantenimiento/delete/{id}
+  defaults: {_controller: bdBundle:Mantenimiento:deletemantenimiento }
+
+# INFORMES #
+informes:
+  path:       /informes
+  defaults:   {_controller: bdBundle:Default:informes }
+informe_coste_obra:
+  path:       /informe/coste/obra
+  defaults:   {_controller: bdBundle:Default:costeobra }
+informe_chart_coste:
+  path:       /informe/coste/grafica/{id}
+  defaults:   {_controller: bdBundle:Default:chartcoste }
+
+# INFORME OPERARIOS #
+informe_operarios:
+  path:       /informe/operarios
+  defaults:   {_controller: bdBundle:Default:informeoperario }
+informe_operario_horas:
+  path:       /informe/operario/horas/{operario}
+  defaults:   {_controller: bdBundle:Default:operariohoras }
+
+
+# INFORME MANTENIMIENTO #
+informe_mantenimiento_horas:
+  path:       /informe/mantenimiento/horas/{operario}
+  defaults:   {_controller: bdBundle:Default:mantenimientohoras }
+
+# INFORME TALLER #
+informe_taller_horas:
+  path:       /informe/taller/horas/{operario}
+  defaults:   {_controller: bdBundle:Default:tallerhoras }
+
+
+# OBRAS 
+obra_index:   
+  path:       /obras
+  defaults:   { _controller: bdBundle:Obra:index }
+obra_new:   
+  path:       /obra/add
+  defaults:   { _controller: bdBundle:Obra:new }
+obra_edit:   
+  path:       /obra/edit/{id}
+  defaults:   { _controller: bdBundle:Obra:edit }
+obra_delete:   
+  path:       /obra/delete/{id}
+  defaults:   { _controller: bdBundle:Obra:delete }
+obra_sin_presupuesto:
+  path:       /obras/sin-presupuesto
+  defaults:   {_controller: bdBundle:Obra:obrasinpresupuesto }
+edit_obra_sin_presupuesto:
+  path:       /obra/sin-presupuesto/edit/{id}
+  defaults:   { _controller: bdBundle:Obra:post }
+edit_estado_obra_sin_presupuesto:
+  path:       /estado/sin-presupuesto/edit/{id}
+  defaults:   { _controller: bdBundle:Obra:postestado }
+edit_cliente_sin_presupuesto:
+  path:       /cliente/sin-presupuesto/edit/{id}
+  defaults:   { _controller: bdBundle:Obra:postcliente }
+edit_fecha_sin_presupuesto:
+  path:       /fecha/sin-presupuesto/edit/{id}
+  defaults:   { _controller: bdBundle:Obra:postfecha }
+# PRODUCTOS OFERTADOS #
+oferta_list:
+  path:       /oferta/producto
+  defaults:   { _controller: bdBundle:Oferta:indexoferta }
+oferta_add:
+  path:       /oferta/coste/add
+  defaults:   { _controller: bdBundle:Oferta:addoferta }
+oferta_delete:
+  path:       /oferta/delete/{id}
+  defaults:   { _controller: bdBundle:Oferta:deleteoferta }
+oferta_edit:
+  path:       /oferta/edit/{id}
+  defaults:   { _controller: bdBundle:Oferta:editoferta }
+

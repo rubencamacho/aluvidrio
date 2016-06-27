@@ -1,0 +1,39 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Listado de usuarios</h1>
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+		    <li class="active">Usuarios</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+	 <a href="{{asset('register')}}" title="Agregar" class="btn btn-success">Registrar</a> <br><br>
+
+	<table class="table-responsive">
+		<table class="table table-bordered">
+			<tbody>
+				<th>Cod.Usu.</th>
+				<th>Name</th>
+				<th>Usuario</th>
+				<th>Role</th>
+			</tbody>
+				{% for user in users %}
+				<tr>
+					<td>{{user.id}}</td>
+					<td>{{user.name}}</td>
+					<td>{{user.username}}</td>
+					<td>{{user.role}}</td>
+
+				</tr>
+				{% endfor %}
+
+		</table>
+	</table>
+
+{% endblock %}

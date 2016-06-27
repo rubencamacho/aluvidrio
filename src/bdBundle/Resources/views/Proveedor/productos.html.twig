@@ -1,0 +1,40 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Productos</h1>
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+		    <li> <a href="{{asset('proveedores')}}">Proveedores</a></li>
+		    <li class="active">Productos</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+	<table class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Cod.Prod</th>
+					<th>Descripción</th>
+					<th></th>
+				</tr>
+			</thead>
+				{% for producto in productos %}
+				<tr>
+					<td>{{producto.codprod}}</td>
+					<td>{{producto.descripcion}}</td>
+
+					<td>
+						<a href="{{asset('proveedor/producto')}}/{{producto.id}}" title="Añadir" class="btn btn-primary">Proveedores</a>
+					</td>
+				</tr>
+				{% endfor %}
+
+		</table>
+	</table>
+
+{% endblock %}

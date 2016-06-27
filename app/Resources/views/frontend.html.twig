@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+        <meta charset="utf-8" />
+        <title>{% block title %}Aluvidrio{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+            <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+            <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css">
+            <link rel="stylesheet" href="https://cdn.datatables.net/s/bs-3.3.5/jszip-2.5.0,pdfmake-0.1.18,dt-1.10.10,b-1.1.0,b-colvis-1.1.0,b-flash-1.1.0,b-html5-1.1.0,b-print-1.1.0,r-2.0.0/datatables.min.css">
+            <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+            <link href="{{ asset('bower_components/angular-xeditable/dist/css/xeditable.css') }}" type="text/css" rel="stylesheet">
+            <link href="{{ asset('public/css/style.css') }}" type="text/css" rel="stylesheet">
+            <link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet">
+            <link href="{{ asset('public/css/jquery-ui.css') }}" type="text/css" rel="stylesheet">      
+            <link href="https://code.jquery.com/ui/1.11.4/themes/blitzer/jquery-ui.css" rel="stylesheet" />
+            <link rel="stylesheet" media="screen" href="{{ asset('public/dist/handsontable.full.css') }}"> 
+            <link href="{{ asset('public/css/dataTables.editor.css') }}" type="text/css" rel="stylesheet">  
+            <link href="{{ asset('public/css/editor.bootstrap.min.css') }}" type="text/css" rel="stylesheet">  
+            <link href="{{ asset('public/css/editor.dataTables.min.css') }}" type="text/css" rel="stylesheet">             
+            <link href="{{ asset('public/css/editor.foundation.min.css') }}" type="text/css" rel="stylesheet"> 
+            <link rel="stylesheet" type="text/css" href="http://www.prepbootstrap.com/Content/shieldui-lite/dist/css/light/all.min.css" />
+
+             
+        {% endblock %}
+        {% block head_javascripts %}
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+            <script src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+            <script src="https://cdn.datatables.net/s/bs-3.3.5/jszip-2.5.0,pdfmake-0.1.18,dt-1.10.10,b-1.1.0,b-colvis-1.1.0,b-flash-1.1.0,b-html5-1.1.0,b-print-1.1.0,r-2.0.0/datatables.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+            <script src="{{ asset('bower_components/angular-xeditable/dist/js/xeditable.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+            <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>            
+            <script src="{{ asset('public/js/jquery-ui.js') }}" type="text/javascript"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>  
+            <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" type="text/javascript"></script>           
+            <script src="{{ asset('public/js/funciones.js') }}" type="text/javascript"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mockjax/1.6.2/jquery.mockjax.min.js"></script>
+            <script src="https://cdn.datatables.net/plug-ins/1.10.9/sorting/datetime-moment.js"></script>
+            
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        </head>
+    
+        <body>
+        <header id="cabecera">
+            {% block header %}
+                <div id="logo" class="loguser">
+                    <a href="{{path("bd_homepage")}}"><img src="{{ asset('public/images/logo.jpg') }}" class="" /></a>
+                </div>
+                <div id="userimg" class="loguser">
+                    <div class="bienvenida">
+                        {% if app.user != null %}
+                            Bienvenido,{{app.user.username}}
+                        {% else %}
+                            
+                        {% endif %}
+                        <img src="{{ asset('public/images/user.png') }}" class="img-user" />
+                    </div>
+                    
+                    <div class="role">
+                            {% if is_granted('ROLE_USER') %}
+                            <span><strong>USUARIO</strong></span>
+                            {% endif %}
+                            
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <strong>ADMINISTRADOR</strong>
+                            {% endif %}
+                    </div>
+                    <div class="logout">
+                    {% if app.user == null %}
+                        <a href="{{path("login")}}">Entrar</a>
+                    {% else %}
+                        <a href="{{path("logout")}}">Salir</a>
+                    {% endif %}
+                    </div>
+                </div>
+ 
+            {% endblock %}
+        </header>
+
+        <nav id="menu">
+            {% block nav %}
+<!--                <img src="{{ asset('public/images/config.png') }}" class="img-menu pull-right" />   -->
+                <div class="menudesplegable btn-group pull-right">
+                      <img src="{{ asset('public/images/config.png') }}" class="img-menu pull-right btn-default dropdown-toggle"
+                              data-toggle="dropdown"><span class="caret"></span>
+                      </img>
+
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{asset('obras')}}">Obras</a></li>
+                        <li><a href="{{asset('clientes')}}">Clientes</a></li>
+                        <li><a href="{{asset('proveedores')}}">Proveedores</a></li>
+                        <li><a href="{{asset('prefijos')}}">Prefijos</a></li>
+                        <li><a href="{{asset('productos')}}">Productos</a></li>
+                        <li><a href="{{asset('operarios')}}">Operarios</a></li>
+                        <li><a href="{{asset('users')}}">Usuarios</a></li>
+                      </ul>
+                    </div>
+            {% endblock %}
+        </nav>
+
+ 
+        <div id="contenido" class="container-width">
+            {% block content %}{% endblock %}
+            <br><br><br>
+        </div>
+
+        <footer id="footer">
+            {% block footer %}
+
+            {% endblock %}
+        </footer>
+
+        {% block javascripts %}
+
+            
+        {% endblock %}
+
+    </body>
+</html>

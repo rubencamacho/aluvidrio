@@ -1,0 +1,57 @@
+{% extends '::frontend.html.twig' %}
+
+
+{% block content %}
+	<h1>Agregar parte</h1>
+
+	    <ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvirio')}}">Inicio</a></li>
+	        <li> <a href="{{asset('partes')}}">Partes</a></li>
+	        <li class="active">Agregar Parte Taller</li>
+	    </ol>
+	    {% if is_granted('ROLE_ADMIN') %}
+	    <a href="{{asset('partes/taller')}}" title="Agregar" class="btn btn-success pull-left">Ver Partes</a><br><br>
+	    {% endif %}
+
+    <br><br>
+
+<div class="form">
+
+	{{ form_start(form) }}
+
+	<div class="input-group">
+	
+		{{form_start(form, {'action':'', 'method':'POST'})}}
+
+		<strong>Usuario:</strong><br> {{app.user.username}}
+           
+			
+
+			{{form_errors(form.dia)}}
+			{{ form_row(form.dia, { 'label': 'Día' }) }}
+
+			{{form_errors(form.hora_inicio_manana)}}
+			{{ form_row(form.hora_inicio_manana, { 'label': 'Hora Inicio Mañana' }) }}
+
+			{{form_errors(form.hora_fin_manana)}}
+			{{ form_row(form.hora_fin_manana, { 'label': 'Hora Fin Mañana' }) }}
+
+			{{form_errors(form.hora_inicio_tarde)}}
+			{{ form_row(form.hora_inicio_tarde, { 'label': 'Hora Inicio Tarde' }) }}
+
+			{{form_errors(form.hora_fin_tarde)}}
+			{{ form_row(form.hora_fin_tarde, { 'label': 'Hora Fin Tarde' }) }}
+
+			{{form_errors(form.observaciones)}}
+			{{ form_row(form.observaciones, { 'label': 'Observaciones' }) }}
+        {{form_end(form)}}
+
+		<button type="submit" name="" class="btn btn-default button-form">Crear Parte</button>
+
+	</div>
+
+	{{ form_end(form) }}
+
+</div>
+
+{% endblock %}

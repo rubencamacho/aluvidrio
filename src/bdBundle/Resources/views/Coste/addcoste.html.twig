@@ -1,0 +1,35 @@
+{% extends '::frontend.html.twig' %}
+
+
+{% block content %}
+	<h1>Añadir Coste</h1>
+
+	    <ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+	        <li> <a href="{{asset('obra/costereal')}}">Coste Real</a></li>
+	        <li class="active">Agregar Producto</li>
+	    </ol>
+
+    <br>
+	 <a href="{{path('producto_new')}}" title="Agregar" class="btn btn-success">Añadir Producto</a> <br><br>
+
+
+<div class="form">
+
+	{{ form_start(form) }}
+
+	<div class="input-group">
+
+	
+		{{form_start(form, {'action':'', 'method':'POST'})}}
+        {{form_end(form)}}
+
+		<button type="submit" name="" class="btn btn-default button-form">Añadir Coste</button>
+
+	</div>
+
+	{{ form_end(form) }}
+
+</div>
+
+{% endblock %}

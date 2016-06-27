@@ -1,0 +1,35 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Clientes</h1>
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+		    <li class="active">Clientes</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+	<table class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Obra</th>
+					<th>Cliente</th>
+				</tr>
+			</thead>
+				{% for cliente in clientes %}
+				<tr>
+					<td>{{cliente.obra}}</td>
+					<td>{{cliente.cliente}}</td>
+
+				</tr>
+				{% endfor %}
+
+		</table>
+	</table>
+
+{% endblock %}

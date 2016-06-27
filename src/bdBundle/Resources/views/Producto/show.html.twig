@@ -1,0 +1,27 @@
+{% extends 'frontend.html.twig' %}
+
+{% block content %}
+    <h2>Productos</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Cod.Prod.</th>
+                <td>{{ producto.id }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ producto.descripcion }}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+    <hr>
+
+    <a href="{{ path('producto_index') }}" class="btn btn-primary">Back to the list</a>
+    <a href="{{ path('producto_edit', { 'id': producto.id }) }}" class="btn btn-primary">Edit</a>
+    {{ form_start(delete_form) }}
+        <input type="submit" value="Delete" class="btn btn-danger">
+    {{ form_end(delete_form) }}
+{% endblock %}

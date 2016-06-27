@@ -1,0 +1,173 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Coste de la Obra</h1>
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+		    <li> <a href="{{asset('obra/costereal')}}">Coste Real</a></li>
+        	<li class="active">Añadir Producto</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+{% for oferta in ofertas %}
+    	{% if oferta.obra == obra.obra %}
+    		<strong>Oferta: </strong>{{oferta.id}} <br>
+    	{% endif %}
+    {% endfor %}
+    
+	<strong>Obra: </strong>{{obra.obra}}
+	<strong class="cliente">Cliente: </strong>{{obra.cliente}}
+	<br><br>
+
+
+	<table class="table-responsive">
+		<table id="costereal" class="table table-bordered">
+		{% set total=0 %}
+		{% for p in producto %}
+			{% if obra == p.obra %}
+				{% set importe = p.und * p.precio %}
+				{% set total = total + importe %}
+			{% endif %}
+		{% endfor %}
+			<thead>
+				<tr>
+					<th>Prv.</th>
+					<th>Alb.</th>
+					<th>Prefijo</th>
+					<th>Cod.Prod.</th>
+					<th>Descripción</th>
+					<th>Und.</th>
+					<th>Precio</th>
+					<th>Importe</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th>{{total}}€</th>
+					<th></th>
+				</tr>
+			</tfoot>
+				{% for dato in datos %}
+				<tr>
+					<td class="editable-click"><a href="#" class="editable-click"  data-pk="{{dato.id}}" data-type="text"  data-url="{{path('edit_proveedor', { 'id': dato.id })}}" data-value="{{dato.proveedor}}"  data-name="proveedor">{{dato.proveedor}}</a></td>
+
+
+					<td class="editable-click"><a href="#" class="editable-click"  data-pk="{{dato.id}}" data-type="text"  data-url="{{path('edit_albaran', { 'id': dato.id })}}" data-value="{{dato.albaran}}"  data-name="albaran">{{dato.albaran}}</a></td>
+
+					<td>{{dato.prefijo}}</td>
+
+					<td>{{dato.codprod}}</td>
+
+					<td class="editable-click"><a href="#" class="editable-click"  data-pk="{{dato.id}}" data-type="text"  data-url="{{path('edit_coste', { 'id': dato.id })}}" data-value="{{dato.descripcion}}"  data-name="descripcion">{{dato.descripcion}}</a></td>
+
+					<td class="editable-click"><a href="#" class="editable-click"  data-pk="{{dato.id}}"   data-url="{{path('edit_und', { 'id': dato.id })}}" data-value="{{dato.und}}"  data-name="und">{{dato.und}}</td>
+					
+					<td class="editable-click"><a href="#" class="editable-click"  data-pk="{{dato.id}}"   data-url="{{path('edit_precio', { 'id': dato.id })}}" data-value="{{dato.precio}}"  data-name="und">{{dato.precio}}€</td>
+
+					{% set importe = dato.und * dato.precio %}
+					<td>{{ importe }}€</td>
+
+					<td>
+						<a href="{{ path('obra_coste', { 'id': dato.obra.id }) }}"><img src="{{ asset('public/images/guardar.png') }}" class="" /></a>
+
+					</td>
+				</tr>
+				{% endfor %}
+
+					
+		</table>
+	</table>
+	
+
+<!--
+
+	{{ form_start(form) }}
+
+	<div class="input-group">
+
+	
+		{{form_start(form, {'action':'', 'method':'POST'})}}
+		<table class="table-responsive">
+			<table id="añadir" class="tabla-añadir">
+				<thead>
+					<tr>
+						<th class="campo">Prv.</th>
+						<th class="campo">Alb.</th>
+						<th class="campo">Prefijo</th>
+						<th class="campo">Cod.Prod.</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>{{form_errors(form.proveedor)}}
+					{{form_widget(form.proveedor)}}</td>
+					
+
+					<td>{{form_errors(form.albaran)}}
+					{{form_widget(form.albaran)}}</td>
+
+					<td>{{form_errors(form.prefijo)}}
+					{{form_widget(form.prefijo)}}</td>
+
+					<td>{{form_errors(form.codprod)}}
+					{{form_widget(form.codprod)}}</td>
+
+
+					<td><button type="submit" name="" class="btn btn-default button-form">Añadir Coste</button></td>
+
+				</tr>
+			</table>
+		</table>
+		
+        {{form_end(form)}}
+
+	</div>
+
+	{{ form_end(form) }}
+
+-->
+
+
+</div>
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+ 		{{ parent() }}
+
+        <script>  
+        $(document).ready(function() {
+        $.fn.editable.defaults.mode = 'inline';
+          	$(document).ready(function() {
+	            $('#costereal').editable({
+		            type: 'text',
+		            name: 'nombre',
+		            send: 'always',
+		            selector: '.editable-click a',
+		            
+		  		});
+
+        	});  
+
+
+        });
+        	
+        </script> 
+            
+{% endblock %}

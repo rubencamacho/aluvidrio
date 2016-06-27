@@ -1,0 +1,52 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Prefijos</h1>
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+		    <li class="active">Prefijos</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+    <a href="{{asset('prefijo/add')}}" title="Agregar" class="btn btn-success">Agregar</a> <br><br>
+
+
+	<table class="table-responsive">
+		<table id="operarios" class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Prefijo</th>
+					<th>Descripción</th>
+					<th></th>
+				</tr>
+			</thead>
+				{% for prefijo in prefijos %}
+					<tr>
+						<td class="">{{prefijo.prefijo}}</td>
+
+						<td >{{prefijo.descripcion}}</td>
+
+						<td>	
+							<a href="{{asset('prefijo/edit')}}/{{prefijo.id}}"><img src="{{ asset('public/images/editar.png') }}" class="" title="editar" class="btn btn-warning"></a>	
+							
+							<a href="{{asset('prefijo/delete')}}/{{prefijo.id}}" title="eliminar" onclick="return confirm('¿Está seguro que desea borrar el operario?')"><img src="{{ asset('public/images/eliminar.png') }}" class="" title="editar" class="btn btn-warning"></a>		
+						</td>
+					</tr>
+
+					
+				{% endfor %}
+
+
+		</table>
+	</table>
+
+
+
+{% endblock %}
+
+

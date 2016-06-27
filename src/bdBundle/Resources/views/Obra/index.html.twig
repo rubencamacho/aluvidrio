@@ -1,0 +1,50 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+<h1>Listado de Obras</h1>
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+		    <li class="active">Obras</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+	 <a href="{{asset('obra/add')}}" title="Agregar" class="btn btn-success">Agregar</a> <br><br>
+
+	<table class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Obra</th>
+					<th>Cliente</th>
+					<th>Fecha</th>
+					<th>Estado</th>
+					<th></th>
+				</tr>
+			</thead>
+				{% for obra in obras %}
+				<tr>
+					<td>{{obra.obra}}</td>
+					<td>{{obra.cliente}}</td>
+					<td>{{obra.fecha|date('d/m/Y')}}</td>
+					<td>{{obra.estado}}</td>
+					<td>
+						<a href="{{asset('obra/edit')}}/{{obra.id}}" title="editar"><img src="{{ asset('public/images/editar.png') }}" class="" title="editar" class="btn btn-warning"></a>
+						
+						<a href="{{asset('obra/delete')}}/{{obra.id}}" title="eliminar" onclick="return confirm('¿Está seguro que desea borrar el obra?')"><img src="{{ asset('public/images/eliminar.png') }}" class="" title="editar" class="btn btn-warning"></a>						
+
+					
+					</td>
+
+				</tr>
+				{% endfor %}
+
+		</table>
+	</table>
+{% endblock %}
+
+
+

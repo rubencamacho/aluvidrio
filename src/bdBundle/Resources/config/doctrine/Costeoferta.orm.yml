@@ -1,0 +1,70 @@
+bdBundle\Entity\Costeoferta:
+    type: entity
+    table: costeoferta
+    indexes:
+        fk_costeoferta_producto:
+            columns:
+                - obra_id
+        fk_producto:
+            columns:
+                - producto_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        descripcion:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        und:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        precio:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+    manyToOne:
+        obra:
+            targetEntity: Obra
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                obra_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        producto:
+            targetEntity: Producto
+            unique: false
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                producto_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        prefijo:
+            targetEntity: Prefijo
+            unique: false
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                prefijo:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

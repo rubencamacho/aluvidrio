@@ -1,0 +1,35 @@
+{% extends '::frontend.html.twig' %}
+
+
+{% block content %}
+    <h1>Registro de Usuario</h1>
+
+        <ol class="breadcrumb">
+            <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+            <li> <a href="">Listado de Obras</a></li>
+            <li class="active">Agregar Obra</li>
+        </ol>
+
+    <br><br>
+
+<div class="form">
+
+    {{ form_start(form) }}
+
+    <div class="input-group">
+        {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+        
+        {{form_start(form, {'action':'', 'method':'POST'})}}
+        {{form_end(form)}}
+
+        <button type="submit" name="" class="btn btn-default button-form">Registrar</button>
+
+    </div>
+
+    {{ form_end(form) }}
+
+</div>
+
+{% endblock %}

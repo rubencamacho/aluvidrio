@@ -1,0 +1,28 @@
+{% extends '::frontend.html.twig' %}
+
+
+{% block content %}
+
+	<div id="contenido-principal">
+
+		<a href="{{asset('/informe/coste/obra')}}">
+			<div id="" class="col-xs-12 col-sm-4 col-md-4 reg lila">
+				<h3 >Coste Obras</h3>
+			</div>
+		</a>
+
+		<a href="{{asset('/informe/operarios')}}">
+			<div id="" class="col-xs-12 col-sm-4 col-md-4 reg naranja">
+				<h3>Operarios</h3>				
+			</div>
+		</a>
+
+		<a href="">
+			<div id="" class="col-xs-12 col-sm-4 col-md-4 reg azul">
+				<h3></h3>			
+			</div>
+		</a>
+
+	</div>
+
+{% endblock %}

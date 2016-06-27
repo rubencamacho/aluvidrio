@@ -1,0 +1,15 @@
+{% extends 'frontend.html.twig' %}
+
+{% block content %}
+    <h2>Crear Usuario</h2>
+    <hr>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" class="btn btn-primary">
+    {{ form_end(form) }}
+
+    <hr>
+
+    <a href="{{ path('user_index') }}" class="btn btn-primary">Volver a la lista</a>
+{% endblock %}

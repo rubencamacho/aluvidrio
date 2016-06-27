@@ -1,0 +1,53 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Partes por obra</h1>
+
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+		    <li> <a href="{{asset('partes')}}">Partes</a></li>
+		    <li class="active">Ver Partes</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+
+	<table class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Operario</th>
+					<th>Día</th>
+					<th>Hora Inicio Mañana</th>
+					<th>Hora Fin Mañana</th>
+					<th>Hora Inicio Tarde</th>
+					<th>Hora Fin Tarde</th>
+					<th>Observaciones</th>
+					<th>Operaciones</th>
+				</tr>
+			</thead>
+				{% for dato in datos %}
+				<tr>
+					<td>{{dato.operario}}</td>
+					<td>{{dato.dia|date('d/m/Y')}}</td>
+					<td>{{dato.hora_inicio_manana|date('H:i:s a')}}</td>
+					<td>{{dato.hora_fin_manana|date('H:i:s a')}}</td>
+					<td>{{dato.hora_inicio_tarde|date('H:i:s a')}}</td>
+					<td>{{dato.hora_fin_tarde|date('H:i:s a')}}</td>
+					<td>{{dato.observaciones}}</td>
+					<td>
+						<a href="{{asset('parte/obra/edit')}}/{{dato.id}}" title="Editar" class="btn btn-warning">Editar</a>
+						-
+						<a href="{{asset('parte/obra/delete')}}/{{dato.id}}" title="coste" class="btn btn-danger" onclick="return confirm('¿Está seguro que desea borrar al parte?')">Eliminar</a>	
+					</td>
+				</tr>
+				{% endfor %}
+
+		</table>
+	</table>
+
+{% endblock %}

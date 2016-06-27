@@ -1,0 +1,48 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Obras</h1>
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+		    <li> <a href="{{asset('partes')}}">Partes</a></li>
+		    <li class="active">Obras</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+	<table class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Obra</th>
+					<th>Cliente</th>
+					<th>Fecha</th>
+					<th>Estado</th>
+					<th></th>
+				</tr>
+			</thead>
+				{% for obra in obras %}
+					{% if obra.estado == 'ejecutando' %}
+					<tr>
+						<td>{{obra.obra}}</td>
+						<td>{{obra.cliente}}</td>
+						<td>{{obra.fecha|date('d/m/Y')}}</td>
+						<td>{{obra.estado}}</td>
+						<td>
+							<a href="{{asset('parte/obra/add')}}/{{obra.id}}" title="Añadir" class="btn btn-primary">Añadir Parte</a>
+							{% if is_granted('ROLE_ADMIN') %}
+							<a href="{{asset('parte/obra/list')}}/{{obra.id}}" title="Ver" class="btn btn-warning">Ver Partes</a>
+							{% endif %}
+						</td>
+					</tr>
+					{% endif %}
+				{% endfor %}
+
+		</table>
+	</table>
+
+{% endblock %}

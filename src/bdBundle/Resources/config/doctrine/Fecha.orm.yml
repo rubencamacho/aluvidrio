@@ -1,0 +1,31 @@
+bdBundle\Entity\Fecha:
+    type: entity
+    table: fecha
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dia_inicio:
+            type: date
+            nullable: true
+        dia_fin:
+            type: date
+            nullable: true
+        total:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        operario:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

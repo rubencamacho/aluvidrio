@@ -1,0 +1,30 @@
+{% extends 'frontend.html.twig' %}
+
+{% block content %}
+    <h2>User</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Usuario</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ user.name }}</td>
+            </tr>
+            <tr>
+                <th>ROLE</th>
+                <td>{{ user.role }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <a href="{{ path('user_index') }}" class="btn btn-primary">Back to the list</a>
+    <a href="{{ path('user_edit', { 'id': user.id }) }}" class="btn btn-primary">Edit</a>
+    {{ form_start(delete_form) }}
+        <input type="submit" value="Delete" class="btn btn-danger">
+    {{ form_end(delete_form) }}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends '::frontend.html.twig' %}
+
+
+{% block content %}
+
+	<div id="contenido-principal">
+
+		<a href="{{asset('/partes/obras')}}">
+			<div id="" class="col-xs-12 col-sm-4 col-md-4 reg lila">
+				<h3 >Obras</h3>
+			</div>
+		</a>
+
+		<a href="{{asset('/parte/taller/add')}}">
+			<div id="" class="col-xs-12 col-sm-4 col-md-4 reg naranja">
+				<h3>Taller</h3>				
+			</div>
+		</a>
+
+		<a href="{{asset('/parte/mantenimiento/add')}}">
+			<div id="" class="col-xs-12 col-sm-4 col-md-4 reg azul">
+				<h3>Mantenimiento</h3>			
+			</div>
+		</a>
+
+	</div>
+
+{% endblock %}

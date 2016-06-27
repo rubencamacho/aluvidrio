@@ -1,0 +1,88 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Listado de Obras Sin Presupuesto</h1>
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+		    <li class="active">Obras sin Presupuesto</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+	 <a href="{{asset('/new')}}" title="Agregar" class="btn btn-success">Agregar</a> <br><br>
+
+	<table class="table-responsive">
+		<table id="obra_sin_presupuesto" class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Obra</th>
+					<th>Cliente</th>
+					<th>Fecha</th>
+					<th>Estado</th>
+					<th></th>
+				</tr>
+			</thead>
+
+			
+				{% for obra in obras %}
+					{% if obra.presupuesto == 0 %}
+						<tr>
+							<td class="editable-click"><a href="#" class="editable-click"  data-pk="{{obra.id}}" data-type="text"  data-url="{{path('edit_obra_sin_presupuesto', { 'id': obra.id })}}" data-value="{{obra.obra}}"  data-name="obra">{{obra.obra}}</a></td>
+
+							<td class="editable-click"><a href="#" class="editable-click"  data-pk="{{obra.id}}" data-type="text"  data-url="{{path('edit_cliente_sin_presupuesto', { 'id': obra.id })}}" data-value="{{obra.cliente}}"  data-name="cliente">{{obra.cliente}}</a></td>
+
+							<td class="editable-click"><a href="#" class="editable-click"  data-pk="{{obra.id}}" data-type="text"  data-url="{{path('edit_fecha_sin_presupuesto', { 'id': obra.id })}}" data-value="{{obra.fecha|date('d/m/Y')}}"  data-name="fecha">{{obra.fecha|date('d/m/Y')}}</a></td>
+
+							<td class="editable-click"><a href="#" id="estado" class="editable-click estado"  data-pk="{{obra.id}}" data-type="select"  data-url="{{path('edit_estado_obra_sin_presupuesto', { 'id': obra.id })}}" data-value="{{obra.estado}}"  data-name="estado">{{obra.estado}}</a></td>
+							
+							<td>
+								<a href="{{asset('obra/edit')}}/{{obra.id}}"><img src="{{ asset('public/images/editar.png') }}" class="" /></a>
+																				
+							</td>
+
+						</tr>
+					{% endif %}
+				{% endfor %}
+			
+		</table>
+	</table>
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+ 		{{ parent() }}
+
+        <script>  
+        $(document).ready(function() {
+        $.fn.editable.defaults.mode = 'inline';
+          	$(document).ready(function() {
+	            $('#obra_sin_presupuesto').editable({
+		            name: 'nombre',
+		            send: 'always',
+		            selector: '.editable-click a',
+		            
+		  		});
+		  		$('.estado').editable({
+		            type: 'select',
+		            source: [
+		              {value: 'pendiente', text: 'pendiente'},
+		              {value: 'ejecutando', text: 'ejecutando'},
+		              {value: 'finalizada', text: 'finalizada'}
+		           ]
+		            
+		            
+		  		});
+
+        	});     
+
+        });
+        	
+        </script> 
+            
+{% endblock %}

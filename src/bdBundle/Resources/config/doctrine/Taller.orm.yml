@@ -1,0 +1,46 @@
+bdBundle\Entity\Taller:
+    type: entity
+    table: taller
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        operario:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        dia:
+            type: date
+            nullable: true
+        hora_inicio_manana:
+            type: time
+            nullable: true
+        hora_fin_manana:
+            type: time
+            nullable: true
+        hora_inicio_tarde:
+            type: time
+            nullable: true
+        hora_fin_tarde:
+            type: time
+            nullable: true
+        total:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        observaciones:
+            type: string
+            nullable: true
+            length: 32
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,4 @@
+services:
+#    bd.example:
+#        class: bdBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

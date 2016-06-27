@@ -1,0 +1,27 @@
+{% extends '::frontend.html.twig' %}
+
+
+{% block content %}
+	<h1>Editar Parte</h1>
+    
+    <ol class="breadcrumb">
+        <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+        <li><a href="{{asset('partesobra')}}">Partes</a></li>
+        <li class="active">Editar Parte</li>
+    </ol>
+
+<div class="form">
+    
+    {{ form_start(form) }}
+    <div class="input-group">
+
+        {{form_start(form)}}
+        {{form_end(form)}}
+
+        <button type="submit" name="" class="btn btn-default button-form">Editar Parte</button>
+    </div>     
+     {{ form_end(form) }}
+
+</div>
+   
+{% endblock %}

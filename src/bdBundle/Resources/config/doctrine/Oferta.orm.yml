@@ -1,0 +1,44 @@
+bdBundle\Entity\Oferta:
+    type: entity
+    table: ofertas
+    indexes:
+        fk_oferta_producto:
+            columns:
+                - obra_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        costeoferta:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+    manyToOne:
+        producto:
+            targetEntity: Costeoferta
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                producto_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        obra:
+            targetEntity: Obra
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                obra_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

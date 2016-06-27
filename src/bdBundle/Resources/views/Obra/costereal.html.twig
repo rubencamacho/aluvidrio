@@ -1,0 +1,48 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Listado de Costes</h1>
+
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+		    <li class="active">Obras</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+
+	<table class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Obra</th>
+					<th>Cliente</th>
+					<th>Coste Real</th>
+					<th>Fecha</th>
+					<th>Estado</th>
+					<th></th>
+				</tr>
+			</thead>
+				{% for dato in datos %}
+					{% if dato.estado != "finalizada" %}
+						<tr>
+							<td>{{dato.obra}}</td>
+							<td>{{dato.cliente}}</td>
+							<td>{{dato.coste}}€</td>
+							<td>{{dato.fecha|date('d/m/Y')}}</td>
+							<td>{{dato.estado}}</td>
+							<td>
+								<a href="{{asset('obra/coste')}}/{{dato.id}}" title="coste"><img src="{{ asset('public/images/editar.png') }}" class="" /></a>
+							</td>
+						</tr>
+					{% endif %}
+				{% endfor %}
+
+		</table>
+	</table>
+
+{% endblock %}

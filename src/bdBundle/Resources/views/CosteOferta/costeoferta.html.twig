@@ -1,0 +1,143 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Coste de la Oferta</h1>
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+		    <li> <a href="{{path('obra_costeofertado')}}">Ofertas</a></li>
+        	<li class="active">Añadir Oferta</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+
+    {% for oferta in ofertas %}
+    	{% if oferta.obra == obra.obra %}
+    		<strong>Oferta: </strong>{{oferta.id}} <br>
+    	{% endif %}
+    {% endfor %}
+    
+	<strong>Obra: </strong>{{obra.obra}}
+	<strong class="cliente">Cliente: </strong>{{obra.cliente}}
+	<br><br>
+
+	{% set total=0 %}
+	{% for p in producto %}
+		{% if obra == p.obra %}
+			{% set importe = p.und * p.precio %}
+			{% set total = total + importe %}
+		{% endif %}
+	{% endfor %}
+	<table class="table-responsive">
+		<table id="costeoferta" class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Prefijo</th>
+					<th>Cod.Producto</th>
+					<th>Descripción</th>
+					<th>Und.</th>
+					<th>Precio</th>
+					<th>Importe</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th>{{total}}€</th>
+					<th></th>
+				</tr>
+			</tfoot>
+				{% for dato in datos %}
+				<tr>
+					<td>{{dato.prefijo}}</td>	
+
+					<td>{{dato.producto}}</td>	
+
+					<td class="editable-click"><a href="#" class="editable-click"  data-pk="{{dato.id}}" data-type="text"  data-url="{{path('edit_oferta', { 'id': dato.id })}}" data-value="{{dato.descripcion}}"  data-name="descripcion">{{dato.descripcion}}</a></td>
+
+					<td class="editable-click"><a href="#" class="editable-click"  data-pk="{{dato.id}}" data-type="number"  data-url="{{path('edit_oferta_und', { 'id': dato.id })}}" data-value="{{dato.und}}"  data-name="und">{{dato.und}}</a></td>
+
+					<td class="editable-click"><a href="#" class="editable-click"  data-pk="{{dato.id}}" data-type="number"  data-url="{{path('edit_oferta_precio', { 'id': dato.id })}}" data-value="{{dato.precio}}"  data-name="und">{{dato.precio}}€</a></td>
+
+					{% set importe = dato.und * dato.precio %}
+					<td>{{ importe }}€</td>
+
+					<td>
+						<a href="{{ path('costeoferta_index', { 'id': dato.obra.id }) }}" title="editar"><img src="{{ asset('public/images/guardar.png') }}" class="" /></a>
+
+					</td>
+				</tr>
+
+				{% endfor %}
+
+		</table>
+	</table>
+
+	{{ form_start(form) }}
+
+	<div class="input-group">
+
+	
+		{{form_start(form, {'action':'', 'method':'POST'})}}
+		<table class="table-responsive">
+			<table id="añadir" class="tabla-añadir">
+				<thead>
+					<tr>
+						<th class="campo">Prefijo</th>
+						<th class="campo">Cod.Prod.</th>
+						<th class="campo">Precio</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>{{form_errors(form.prefijo)}}
+					{{form_widget(form.prefijo)}}</td>
+
+					<td>{{form_errors(form.producto)}}
+					{{form_widget(form.producto)}}</td>
+					
+
+					<td><button type="submit" name="" class="btn btn-default button-form">Añadir</button></td>
+
+				</tr>
+			</table>
+		</table>
+        {{form_end(form)}}
+
+		
+
+	</div>
+
+	{{ form_end(form) }}
+
+
+{% endblock %}
+
+	{% block javascripts %}
+
+ 		{{ parent() }}
+
+        <script> 
+ 		$(document).ready(function() {
+        $.fn.editable.defaults.mode = 'inline';
+          	$(document).ready(function() {
+	            $('#costeoferta').editable({
+		            type: 'text',
+		            name: 'nombre',
+		            send: 'always',
+		            selector: '.editable-click a',
+		  		});
+		  		
+        	});    
+
+        });  
+		</script> 
+    {% endblock %}

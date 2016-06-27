@@ -1,0 +1,25 @@
+<?php
+
+namespace bdBundle\Entity;
+
+/**
+ * Prefijo
+ */
+class Prefijo
+{
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     *@var string
+     */
+    private $codprod;
+
+    /**
+     * @var string
+     */
+    private $descripcion;
+
+}

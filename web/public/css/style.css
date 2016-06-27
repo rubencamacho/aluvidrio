@@ -1,0 +1,141 @@
+.container-width{
+	margin: 0 auto;
+	max-width: 1100px;
+	padding: 0 2em;
+}
+
+/************** Crear Obra *********************/
+#obra_fecha_time{
+	display: none;
+}
+#obra_fecha{
+	border: 0;
+	box-shadow: none;
+}
+.btn-default{
+	margin-top: 15px;
+}
+
+/********* Gráfico *********************/
+#piechart{
+	width:50%;
+	float: left;
+
+}
+#informe-content{
+	float: right;
+}
+
+/****************** Cabecera ********************************/
+header{
+	overflow: hidden;
+	border:1px solid #AAA;
+}
+#logo{
+	max-width: 300px;
+	float: left;
+}
+.loguser{
+	margin: 1.5%;
+	margin-bottom: 5%;
+
+}
+#logo img{
+	width: 100%;
+}
+#user{
+	width:50%;
+}
+#userimg{
+	float:right;
+}
+.img-user{
+	
+}
+/****** Menu **********/
+.img-menu{
+	margin-top:-25px;
+	margin-right: 3%;
+}
+.logout{
+	margin-top: 17px;
+	margin-left: 25px;
+}
+.role{
+	margin-top: -20px;
+}
+.caret{
+	display:flex;
+}
+.menudesplegable{
+	margin-right: 2%;
+}
+.dropdown-menu{
+	background-color: #555;
+}
+.dropdown-menu > li > a{
+	color: #fff;
+	font-size: 1em;
+}
+
+/********************** Contenido Index ***********************/
+#contenido-principal{
+	margin: 0 auto;
+	width: 80%;
+	overflow: hidden;
+	margin-top: 5%;
+}
+.reg{
+	height: 200px;
+	max-width: 230px;
+	margin: 2%;
+}
+.reg h3{
+	text-align: center;
+	color: #fff;
+	font-size: 2em;
+	line-height: 1.5;
+    margin-top: 40px;
+}
+.lila{
+	background: #8A2BE2;
+}
+.naranja{
+	background: #FF4500;
+}
+.azul{
+	background: #48D1CC;
+}
+.rojo{
+	background: #B22222;
+}
+.verde{
+	background: #7CFC00;
+}
+.amarillo{
+	background: #FFD700;
+}
+.red{
+	color: red;
+}
+/************* COSTE DE LA OBRA **********/
+.result{
+	position: absolute;
+	left: 75%;
+}
+.cliente{
+	margin-left: 40%;
+}
+
+/************* TABLAS EDITABLES ********************/
+
+/****** AÑADIR REGISTRO ******/
+.tabla{
+	width: 100%;
+}
+.tabla-añadir .campo{
+	text-align: center;
+}
+#añadir button{
+	margin-top: 0;
+}

@@ -1,0 +1,48 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Usuarios</h1>
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+		    <li class="active">usuarios</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+        
+	    <a href="{{asset('register')}}" title="Agregar" class="btn btn-success pull-left">Registrar</a><br><br>
+	    
+
+	<table class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Username</th>
+					<th>ROLE</th>
+					<th></th>
+				</tr>
+			</thead>
+				{% for usuario in users %}
+				<tr>
+					<td>{{usuario.name}}</td>
+					<td>{{usuario.username}}</td>
+					<td>{{usuario.role}}</td>
+
+					<td>
+						<a href="{{ path('user_edit', { 'id': usuario.id }) }}" title="editar"><img src="{{ asset('public/images/editar.png') }}" class="" /></a>
+						<a href="{{asset('user/delete')}}/{{usuario.id}}" title="eliminar"  onclick="return confirm('¿Está seguro que desea borrar el usuario?')"><img src="{{ asset('public/images/eliminar.png') }}" class="" /></a>
+					</td>
+				</tr>
+
+
+				{% endfor %}
+
+		</table>
+	</table>
+
+{% endblock %}

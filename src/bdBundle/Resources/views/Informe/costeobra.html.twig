@@ -1,0 +1,59 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Listado de Costes</h1>
+
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+        	<li class="active">Coste Real de Ejecución</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+
+	<table class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Obra</th>
+					<th>Cliente</th>
+					<th>Coste Ofertado</th>
+					<th>Coste Real</th>
+					<th>Desviación</th>
+					<th>% Desv.</th>
+					<th></th>
+				</tr>
+			</thead>
+				{% for dato in datos %}
+				<tr>
+					<td>{{dato.obra}}</td>
+					<td>{{dato.cliente}}</td>
+					<td>{{dato.costeoferta}}€</td>	
+					<td>{{dato.coste}}€</td>		
+					{% if dato.costeoferta < dato.coste %}		
+						<td class="red">{{dato.costeoferta - dato.coste}}€</td>
+					{% else %}
+						<td>{{dato.costeoferta - dato.coste}}€</td>
+					{% endif %}
+						{% if dato.coste == 0 or dato.costeoferta == 0 %}
+							<td>0€</td>
+						{% elseif (((dato.costeoferta*100)/dato.coste)-100 < 0) %}
+							<td class="red">{{((dato.costeoferta*100)/dato.coste)-100}}€</td>
+						{% else %}
+							<td>{{((dato.costeoferta*100)/dato.coste)-100}}€</td>
+
+						{% endif %}
+					<td>
+						<a href="{{asset('informe/coste/grafica')}}/{{dato.id}}" title="grafica">Ver Gráfica</a>
+					</td>
+				</tr>
+				{% endfor %}
+
+		</table>
+	</table>
+
+{% endblock %}

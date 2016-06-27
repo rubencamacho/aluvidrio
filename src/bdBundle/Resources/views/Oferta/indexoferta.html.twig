@@ -1,0 +1,79 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Listado de Productos Ofertados</h1>
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+	        <li class="active">Productos Ofertados</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+	 <a href="{{asset('/oferta/coste/add')}}" title="Agregar" class="btn btn-success addRow">Agregar</a> <br><br>
+
+	<table class="table-responsive">
+		<table id="table" class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Producto</th>
+					<th>Descripción</th>
+					<th>Unidades</th>
+					<th>Precio</th>
+					<th></th>
+				</tr>
+			</thead>
+				{% for oferta in ofertas %}
+				<tr>
+					<td>{{oferta.id}}</td>
+					<td>{{oferta.descripcion}}</td>
+					<td>{{oferta.und}}</td>
+					<td>{{oferta.precio}}</td>
+					<td>
+						{% if oferta.obra|length == 0 %}
+						<a href="{{asset('oferta/delete')}}/{{oferta.id}}" title="Eliminar" class="btn btn-danger" onclick="return confirm('¿Está seguro que desea borrar la oferta?')">Eliminar</a>
+						
+						{% else %}
+							<span>Producto en uso</span>
+						{% endif %}
+
+						-
+						<a href="{{asset('oferta/edit')}}/{{oferta.id}}" title="Editar" class="btn btn-warning">Editar</a>
+					</td>
+				</tr>
+				{% endfor %}
+
+		</table>
+	</table>
+
+{% endblock %}
+
+		{% block javascripts %}
+
+ 		{{ parent() }}
+
+        <script> 
+            $(document).ready(function() {
+			    var t = $('#table').DataTable();
+			    var counter = 1;
+			 
+			    $('.addRow').on( 'click', function () {
+			        t.row.add( [
+			            counter +'.1',
+			            counter +'.2',
+			            counter +'.3',
+			            counter +'.4'
+			        ] ).draw( false );
+			 
+			        counter++;
+			    } );
+			 
+			    // Automatically add a first row of data
+			    
+			} );
+        </script> 
+            
+        {% endblock %}

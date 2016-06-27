@@ -1,0 +1,47 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Proveedores</h1>
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+		    <li class="active">Proveedores</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+       <a href="{{asset('proveedor/add')}}" title="Agregar" class="btn btn-success pull-left">Agregar Proveedor</a><br><br>
+
+       <a href="{{asset('proveedor/producto/add')}}" title="Agregar" class="btn btn-success pull-left">Agregar Producto</a><br><br>
+
+       <a href="{{asset('proveedor/productos')}}" title="Agregar" class="btn btn-success pull-left">Proveedor Productos</a><br><br>   
+
+
+	<table class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Cod.Prov.</th>
+					<th>Proveedor</th>
+					<th></th>
+				</tr>
+			</thead>
+				{% for proveedor in proveedores %}
+				<tr>
+					<td>{{proveedor.codprov}}</td>
+					<td>{{proveedor.proveedor}}</td>
+					<td>
+						<a href="{{asset('proveedor/edit')}}/{{proveedor.id}}" title="coste" class="btn btn-warning">Editar</a>	
+						-
+						<a href="{{asset('proveedor/delete')}}/{{proveedor.id}}" title="coste" class="btn btn-danger" onclick="return confirm('¿Está seguro que desea borrar el proveedor?')">Eliminar</a>						
+					</td>
+				</tr>
+				{% endfor %}
+
+		</table>
+	</table>
+
+{% endblock %}

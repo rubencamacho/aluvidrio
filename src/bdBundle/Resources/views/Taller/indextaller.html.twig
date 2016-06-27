@@ -1,0 +1,52 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Taller</h1>
+
+			<ol class="breadcrumb">
+			    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+			    <li> <a href="{{asset('partes')}}">Partes</a></li>
+			    <li class="active">Taller</li>
+		    </ol>
+
+		    {% for message in app.session.flashbag().get('status') %}
+	            <div class="alert alert-success">{{ message }}</div>
+	        {% endfor %}
+	<a href="{{asset('parte/taller/add')}}" title="Agregar" class="btn btn-success">Agregar</a><br><br>
+
+	<table class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Operario</th>
+					<th>Día</th>
+					<th>Hora Inicio Mañana</th>
+					<th>Hora Fin Mañana</th>
+					<th>Hora Inicio Tarde</th>
+					<th>Hora Fin Tarde</th>
+					<th>Observaciones</th>
+					<th></th>
+				</tr>
+			</thead>
+				{% for t in taller %}
+				<tr>
+					<td>{{t.operario}}</td>
+					<td>{{t.dia|date('d/m/Y')}}</td>
+					<td>{{t.horaInicioManana|date('H:i:s a')}}</td>
+					<td>{{t.horaFinManana|date('H:i:s a')}}</td>
+					<td>{{t.horaInicioTarde|date('H:i:s a')}}</td>
+					<td>{{t.horaFinTarde|date('H:i:s a')}}</td>
+					<td>{{t.observaciones}}</td>
+					<td>
+						<a href="{{asset('parte/taller/edit')}}/{{t.id}}" title="Editar" class="btn btn-warning">Editar</a>
+						-
+						<a href="{{asset('parte/taller/delete')}}/{{t.id}}" title="Eliminar" class="btn btn-danger" onclick="return confirm('¿Está seguro que desea borrar al parte?')">Eliminar</a>	
+					</td>
+				</tr>
+				{% endfor %}
+
+		</table>
+	</table>
+
+{% endblock %}

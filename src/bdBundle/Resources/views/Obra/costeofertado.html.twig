@@ -1,0 +1,50 @@
+{% extends '::frontend.html.twig' %}
+
+{% block content %}
+
+	<h1>Ofertas</h1>
+
+
+		<ol class="breadcrumb">
+		    <li> <a href="{{asset('aluvidrio')}}">Inicio</a></li>
+        	<li class="active">Ofertas</li>
+	    </ol>
+
+	    {% for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+
+	<table class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Obra</th>
+					<th>Cliente</th>
+					<th>Coste Real</th>
+					<th>Coste Ofertado</th>
+					<th>Fecha</th>
+					<th>Estado</th>
+					<th></th>
+				</tr>
+			</thead>
+				{% for dato in datos %}
+				<tr>
+					<td>{{dato.obra}}</td>
+					<td>{{dato.cliente}}</td>
+					<td>{{dato.coste}}€</td>
+					<td>{{dato.costeoferta}}€</td>
+					<td>{{dato.fecha|date('d/m/Y')}}</td>
+					<td>{{dato.estado}}</td>
+					<td>
+						<a href="{{asset('oferta/coste')}}/{{dato.id}}" title="editar"><img src="{{ asset('public/images/editar.png') }}" class="" /></a>
+						<a href="{{path('oferta_add')}}/{{dato.id}}" title="eliminar"><img src="{{ asset('public/images/eliminar.png') }}" class="" /></a>
+
+					</td>
+				</tr>
+				{% endfor %}
+
+		</table>
+	</table>
+
+{% endblock %}
+

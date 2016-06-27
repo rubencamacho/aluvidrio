@@ -1,0 +1,34 @@
+{% extends 'frontend.html.twig' %}
+
+{% block content %}
+    <h2>Obra</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Obra</th>
+                <td>{{ obra.id }}</td>
+            </tr>
+            <tr>
+                <th>Cliente</th>
+                <td>{{ obra.cliente }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ obra.fecha|date('d/m/Y') }}</td>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <td>{{ obra.estado }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <a href="{{ path('obra_index') }}" class="btn btn-primary">Back to the list</a>
+    <a href="{{ path('obra_edit', { 'id': obra.id }) }}" class="btn btn-primary">Edit</a>
+    {{ form_start(delete_form) }}
+        <input type="submit" value="Delete" class="btn btn-danger">
+    {{ form_end(delete_form) }}
+{% endblock %}
